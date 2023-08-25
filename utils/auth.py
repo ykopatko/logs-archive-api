@@ -3,7 +3,7 @@ from fastapi_users.authentication import JWTStrategy
 
 from config import SECRET_KEY
 
-bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
+bearer_transport = BearerTransport(tokenUrl="auth/jwt/login/")
 
 
 def get_jwt_strategy() -> JWTStrategy:
