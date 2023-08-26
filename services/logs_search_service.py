@@ -5,7 +5,7 @@ from repositories.logs_repo import LogRepository
 from fastapi import UploadFile, File
 from sqlalchemy import select, func, and_
 
-from utils.dependencies.services import extract_zip
+from utils.dependencies.extract_zip import extract_zip
 
 
 class LogService:
@@ -56,16 +56,21 @@ class LogService:
         else:
             return None
 
-        # Store logs (This is an example; you'd likely want to parse and structure the logs better)
         for log_content in logs:
             log = Log(content=log_content)
-            # Store the log in the database
+
+            self.repo.session.add(log)
+
+        await self.repo.session.commit()
+
         return logs
 
-    async def _handle_zip(self, file: UploadFile = File(...)):
+    @staticmethod
+    async def _handle_zip(file: UploadFile = File(...)):
         return await extract_zip(file)
 
-    async def _handle_txt(self, file: UploadFile = File(...)):
+    @staticmethod
+    async def _handle_txt(file: UploadFile = File(...)):
         content = await file.read()
         logs = content.decode().splitlines()
         return logs
