@@ -2,11 +2,12 @@ from datetime import datetime
 
 from fastapi import APIRouter, HTTPException
 from fastapi.params import Depends
+from fastapi import UploadFile, File
 from starlette import status
 
 from api.users import fastapi_users
 from models import User
-from serializers.logs import LogList, LogBase
+from serializers.logs import LogList
 from services.logs_search_service import LogService
 from utils.dependencies.services import get_logs_service
 
@@ -51,3 +52,16 @@ async def get_logs_by_id(
         )
 
     return log
+
+
+@router.post("/upload")
+async def upload_log(
+    file: UploadFile = File(...),
+    user: User = Depends(fastapi_users.current_user(optional=False)),
+    service: LogService = Depends(get_logs_service)
+):
+    logs = await service.process_uploaded_log(file)
+    if logs:
+        return {"status": "success", "message": "Logs processed successfully."}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Failed to process the logs.")
