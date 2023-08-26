@@ -1,0 +1,10 @@
+Log entry 1: This is the first log message.
+Log entry 2: This is the second log message.
+Log entry 3: Something important happened in the system.
+Log entry 4: Another informative message for the log.
+Log entry 5: The system has been shut down for maintenance.
+Log entry 6: User JaneDoe logged in successfully.
+Log entry 7: An error occurred during a database transaction.
+Log entry 8: User JohnDoe attempted to access a restricted resource.
+Log entry 9: The system will undergo maintenance on 2023-09-01.
+Log entry 10: This is the last log message in this file.
