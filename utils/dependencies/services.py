@@ -2,7 +2,7 @@ from fastapi.params import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from repositories.logs_repo import LogRepository
-from services.logs_search_service import LogService
+from services.logs_upload_and_search_service import LogService
 from utils.dependencies.get_session import get_session
 
 

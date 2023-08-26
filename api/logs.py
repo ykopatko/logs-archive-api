@@ -8,7 +8,7 @@ from starlette import status
 from api.users import fastapi_users
 from models import User
 from serializers.logs import LogList
-from services.logs_search_service import LogService
+from services.logs_upload_and_search_service import LogService
 from utils.dependencies.services import get_logs_service
 
 router = APIRouter()
