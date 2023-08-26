@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from models.logs import Log
 from repositories.logs_repo import LogRepository
 
