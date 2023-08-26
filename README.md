@@ -1,6 +1,6 @@
 # FastAPI Logs Archive API
 
-### This API provides functionalities to upload, archive, and search logs.
+### This API provides functionalities to upload, archive, and search logs in asynchronous way.
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ Ensure you have Docker and Docker-compose installed on your machine.
 - Clone this repository:
 
 ```shell
-  git clone [repository-url]
+  git clone https://github.com/ykopatko/logs-archive-api.git
   cd [repository-name]
    ```
 
@@ -75,7 +75,7 @@ To easily interact with the API, navigate to the Swagger UI at http://localhost:
 To utilize endpoints related to searching and uploading logs, you must be registered and authenticated.
 
 - Register a new user by making a POST request to the api/auth/register endpoint.
-- When logging in, use the email you registered with in the username field and your password in the password field. This applies both when using Swagger UI and tools like Postman (where you would use x-www-form-urlencoded for the request body).
+- When obtaining the access token via auth/jwt/login endpoint, use the email you registered to fill in the username field and your password to fill in the password field. This applies both when using Swagger UI and tools like Postman (where you would use x-www-form-urlencoded for the request body).
 - For subsequent requests, use the token you obtained during login for authentication. In Postman, set the header Authorization with the value bearer <your_auth_token>. If you're using the ModHeader browser extension, you can set the authorization header in a similar manner.
 
 
@@ -85,5 +85,5 @@ Sample log files (logs_template.txt and logs_zip_test.zip) are provided in the p
 
 To search for logs:
 
-- By Content: You may assume any word as a keyword. So, just simply input a word or phrase in the 'content' parameter.
+- By Content: You may assume any word as a keyword. Just simply input a word or phrase in the 'content' parameter.
 - By Timestamp: Use the format YYYY-MM-DDTHH:MM:SSZ (e.g., 2023-08-05T10:00:00Z). The date precedes the T character, followed by the time. You have the ability to input start_datetime and end_datetime to apply the time diapason.
