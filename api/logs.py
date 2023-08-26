@@ -17,14 +17,14 @@ router = APIRouter()
 @router.get("", response_model=list[LogList])
 async def get_logs(
     content: str | None = None,
-    start_date: datetime | None = None,
-    end_date: datetime | None = None,
+    start_datetime: datetime | None = None,
+    end_datetime: datetime | None = None,
     user: User = Depends(fastapi_users.current_user(optional=False)),
     service: LogService = Depends(get_logs_service)
 ):
     result = await service.get_all_logs(
-        start_date=start_date,
-        end_date=end_date,
+        start_datetime=start_datetime,
+        end_datetime=end_datetime,
         content=content,
     )
 

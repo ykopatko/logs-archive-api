@@ -15,8 +15,8 @@ class LogService:
 
     async def get_all_logs(
             self,
-            start_date: datetime | None = None,
-            end_date: datetime | None = None,
+            start_datetime: datetime | None = None,
+            end_datetime: datetime | None = None,
             content: str | None = None,
     ):
         query = (
@@ -24,8 +24,8 @@ class LogService:
         )
         filters = []
 
-        if start_date and end_date:
-            filters.append(Log.timestamp.between(start_date, end_date))
+        if start_datetime and end_datetime:
+            filters.append(Log.timestamp.between(start_datetime, end_datetime))
 
         if content:
             filters.append(func.lower(Log.content).ilike(f"%{content.lower()}%"))
